@@ -3,9 +3,17 @@
 #print('your surname is', sur)
 #prin
 print('helloworld')
-x = '12321'
-print(x == x[::-1])
-print(x[::-1])
-x = '12345'
-print(x[::-1])
-print("this is a test of version control")
+x = eval(input())
+print(x)
+'''
+x = 1
+y = x // (60 * 24 * 365)
+d = x % (60 * 24 * 365) // (24 * 60)
+h = x % (60 * 24) // 60
+m = x % 60
+print(y, '年', d, '天', h, '小时', m, '分钟')
+m = eval(input('M='))
+s = eval(input('起始温度='))
+e = eval(input('最终温度='))
+print('Q=', m * (e - s) * 4184)
+'''
