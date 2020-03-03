@@ -39,6 +39,7 @@ int main()
     int n;
     cin >> n;
     int count[1];
+    count[0] = 0;
     int *a = new int[n];
     queen(a, 0, n, count);
     cout << count[0] << endl;
