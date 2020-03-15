@@ -23,6 +23,7 @@ def odd(lst, k, end, n):
         #         e -= 1
         # b[j] = temp
         # lst = b.copy()
+
         e = end - 1
         temp = lst[k]
         s = k
