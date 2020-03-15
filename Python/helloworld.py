@@ -1,19 +1,28 @@
-#sur = input('surname:')
-#first = input('first name:')
-#print('your surname is', sur)
-#prin
-print('helloworld')
-x = eval(input())
-print(x)
-'''
-x = 1
-y = x // (60 * 24 * 365)
-d = x % (60 * 24 * 365) // (24 * 60)
-h = x % (60 * 24) // 60
-m = x % 60
-print(y, '年', d, '天', h, '小时', m, '分钟')
-m = eval(input('M='))
-s = eval(input('起始温度='))
-e = eval(input('最终温度='))
-print('Q=', m * (e - s) * 4184)
-'''
+# lst = [
+#     35, 78, 91, 35, 20, 10, 20, 80, 10, 90, 80, 10, 25, 35, 56, 72, 98, 43, 10,
+#     38
+# ]
+# m = sum(lst) - min(lst) - max(lst)
+# m = m / 18
+# if m - int(m) >= 0.5:
+#     print(int(m) + 1)
+# else:
+#     print(int(m))
+# import numpy
+# x = numpy.mean(lst)
+# x = x * 20 - 108
+# x = x / 18
+# print(x)
+a = [eval(n) for n in input().split()]
+a.sort()
+x = a[0]
+y = a[1]
+n = len(a)
+for i in range(int(n / 2)):
+    c = a[2 * i]
+    d = a[2 * i + 1]
+    if x + d >= y + c:
+        y = d
+    else:
+        x, y = y, c
+print(x, y, x + y)
