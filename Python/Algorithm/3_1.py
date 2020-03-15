@@ -31,4 +31,5 @@ def odd(lst, k, end, n):
             return odd(lst, j + 1, end, n)
 
 
-print(odd(num, 0, n, n))
+r = (odd(num, 0, n, n))
+print('{:.6f}'.format(r))
