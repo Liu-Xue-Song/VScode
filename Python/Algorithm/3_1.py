@@ -33,5 +33,3 @@
 wrong code
 correct answer in cpp 3_1.cpp
 '''
-r = (odd(num, 0, n, n))
-print('{:.6f}'.format(r))

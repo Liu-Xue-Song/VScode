@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#pragma warning(disable : 4996)
+
 using namespace std;
 
 int num, m;
@@ -31,7 +31,7 @@ bool check(int mid)
 
     for (i = 0; i < num; i++)
     {
-        sum += (findmax(val, val[i] + mid + 1, 0, num) - (i)-1);
+        sum += (lower_bound(val + i, val + num, val[i] + mid + 1) - (val + i) - 1);
     }
     if (sum >= m)
     {
@@ -45,32 +45,36 @@ bool check(int mid)
 
 int main()
 {
+    //freopen("i.txt","r",stdin);
+    //freopen("o.txt","w",stdout);
 
     int i, left, right, mid;
-    cin >> num;
-    for (i = 0; i < num; i++)
+    while (scanf("%d", &num) != EOF)
     {
-        cin >> val[i];
-    }
-    m = (num * (num - 1) / 2 + 1) / 2;
-    sort(val, val + num);
-
-    left = 0;
-    right = val[num - 1] - val[0];
-
-    while (right - left > 1)
-    {
-        mid = (left + right) / 2;
-
-        if (check(mid))
+        for (i = 0; i < num; i++)
         {
-            right = mid;
+            scanf("%d", &val[i]);
         }
-        else
+        m = (num * (num - 1) / 2 + 1) / 2;
+        sort(val, val + num);
+
+        left = 0;
+        right = val[num - 1] - val[0];
+
+        while (right - left > 1)
         {
-            left = mid;
+            mid = (left + right) / 2;
+
+            if (check(mid))
+            {
+                right = mid;
+            }
+            else
+            {
+                left = mid;
+            }
         }
+        cout << right << endl;
     }
-    cout << right << endl;
     return 0;
 }
