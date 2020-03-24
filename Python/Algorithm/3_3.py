@@ -36,19 +36,20 @@ def pivot(lst):
     s = 0
     e = n
     for i in table:
-        if i[2] == m:
+        if i[2] < m:
+            lst[s:s + 3] = i[:3]
+            more.extend(i[3:])
+            s += 3
+        elif i[2] > m:
+            lst[e - 3:e] = i[2:]
+            more.extend(i[:2])
+            e -= 3
+        else:
             lst[s:s + 2] = i[:2]
             lst[e - 2:e] = i[3:]
             s += 2
             e -= 2
-        elif i[2] < m:
-            lst[s:s + 3] = i[:3]
-            more.extend(i[3:])
-            s += 3
-        else:
-            lst[e - 3:e] = i[2:]
-            more.extend(i[:2])
-            e -= 3
+
     for i in more:
         if i <= m:
             lst[s] = i
