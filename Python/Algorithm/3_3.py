@@ -16,27 +16,48 @@ def mid5(lst):
         lst[1], lst[3] = lst[3], lst[1]
     if lst[1] > lst[2]:
         lst[2], lst[1] = lst[1], lst[2]
+    return lst
 
 
 def pivot(lst):
     n = len(lst)
     if n <= 5:
-        return short(lst, n, int((n - 1) / 2))
+        return int((n + 1) / 2), short(lst, n, int((n + 1) / 2))
     colNum = n // 5
-    table = [[0 for i in range(colNum)] for j in range(5)]
+    # table = [[0 for i in range(5)] for j in range(colNum)]
     # table = [0 for i in range(colNum)]
+    table = []
     k = 0
     for i in range(colNum):
-        q = lst[k:k + 5]
+        table.append(mid5(lst[k:k + 5]))
         k += 5
-        mid5(q)
-        # table[i] = q[2]
-        for j in range(5):
-            table[j][i] = q[i]
     more = lst[k:]
-    #weird here, maybe wrong
-    m = pivot(table[2])
-    # m = pivot(table)
+    sp, m = pivot([i[2] for i in table])  # is there has to be a return valure?
+    s = 0
+    e = n
+    for i in table:
+        if i[2] == m:
+            lst[s:s + 2] = i[:2]
+            lst[e - 2:e] = i[3:]
+            s += 2
+            e -= 2
+        elif i[2] < m:
+            lst[s:s + 3] = i[:3]
+            more.extend(i[3:])
+            s += 3
+        else:
+            lst[e - 3:e] = i[2:]
+            more.extend(i[:2])
+            e -= 3
+    for i in more:
+        if i <= m:
+            lst[s] = i
+            s += 1
+        else:
+            lst[e - 1] = i
+            e -= 1
+    lst[s] = m
+    return s, m
 
 
 def short(lst, n, k):
@@ -49,21 +70,9 @@ def findk(lst, k):
     if n <= 5:
         return short(lst, n, k)
     else:
-        b = [0] * n
-        p = pivot(lst)
-        s = 0
-        e = n - 1
-        for i in lst:
-            if i < p:
-                b[s] = i
-                s += 1
-            elif i > p:
-                b[e] = i
-                e -= 1
-        b[s] = p
-        lst = b
+        s, m = pivot(lst)
         if s == k - 1:
-            return p
+            return m
         elif s > k - 1:
             return findk(lst[:s], k)
         else:
