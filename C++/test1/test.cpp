@@ -46,31 +46,8 @@ bool check(int mid)
 int main()
 {
 
-    int i, left, right, mid;
-    cin >> num;
-    for (i = 0; i < num; i++)
-    {
-        cin >> val[i];
-    }
-    m = (num * (num - 1) / 2 + 1) / 2;
-    sort(val, val + num);
-
-    left = 0;
-    right = val[num - 1] - val[0];
-
-    while (right - left > 1)
-    {
-        mid = (left + right) / 2;
-
-        if (check(mid))
-        {
-            right = mid;
-        }
-        else
-        {
-            left = mid;
-        }
-    }
-    cout << right << endl;
+    int a[] = {1, 2, 3, 4};
+    int i = 0;
+    cout << a[i++] << i;
     return 0;
 }

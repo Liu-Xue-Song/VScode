@@ -22,7 +22,7 @@ import math
 
 
 def heapSort(lst, n):
-    h = 1 + math.floor(math.log(n, 2))
+    h = 1 + math.floor(math.log(n, 2))  # h starts from 1
     constructHeap(lst, 1, h)
     for i in range(n, 1, -1):
         Max = lst[1]
@@ -32,8 +32,8 @@ def heapSort(lst, n):
         lst[i] = Max
 
 
-def constructHeap(lst, root, h):
-    if 2 * root > len(lst):
+def constructHeap(lst, root, h):  # ab right
+    if 2 * root > len(lst) - 1:
         return
     else:
         constructHeap(lst, 2 * root, h - 1)
@@ -75,7 +75,7 @@ def fixHeapDC(lst, vacant, k, h):
     if h <= 1:
         lst[vacant] = k
     else:
-        hStop = int(h / 2)
+        hStop = int(h / 2)  # here can change
         vStop = promote(lst, hStop, vacant, h)
         vParent = int(vStop / 2)
         if lst[vParent] <= k:
@@ -94,4 +94,4 @@ heapSort(lst, n)
 # if lst[1] > lst[2]:
 #     lst[1], lst[2] = lst[2], lst[1]
 for i in lst[1:]:
-    print(i, end=' ')
+    print(int(i), end=' ')
